@@ -2,6 +2,14 @@ public class Main
 {
     public static void main(String args[])
     {
-        Network network = new Network("CityGrid.txt");
+        InputGenerator inputGenerator= new InputGenerator();
+
+        inputGenerator.generateRandomInput();
+
+        //CityGrid cityGrid = new CityGrid("InputGraph.txt");
+        CityGrid cityGrid = new CityGrid("GeneratedInput.txt");
+        cityGrid.printCityGrid();
+        cityGrid.kruskalMinimalSpanningTree();
+
     }
 }

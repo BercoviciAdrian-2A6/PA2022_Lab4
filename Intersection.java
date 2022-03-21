@@ -1,36 +1,49 @@
+import java.io.StreamTokenizer;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-/**
- * From a graph theory standpoint, intersections represent nodes
- */
 public class Intersection
 {
     private String intersectionName;
-    private ArrayList<Street> incidentStreets = new ArrayList<>();
+    private List<Street> incidentStreets = new ArrayList<>();
 
-    public Intersection(String intersectionName)
+    Intersection ( String intersectionName )
     {
         this.intersectionName = intersectionName;
     }
 
-    public void addIncidentStreet( Street street)
+    public void addStreet(Street street)
     {
         incidentStreets.add(street);
     }
 
-    @Override
-    public String toString() {
+    public String getIntersectionName() {
         return intersectionName;
     }
 
-    //in order for the hashset to work properly
+    @Override
+    public String toString()
+    {
+        String objectName = intersectionName + ": ";
+
+        for (int i = 0; i < incidentStreets.size(); i++)
+        {
+            objectName += "(" + incidentStreets.get(i) + ")";
+
+            if (i != incidentStreets.size() - 1)
+                objectName += "-";
+        }
+
+        return objectName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Intersection that = (Intersection) o;
-        return intersectionName.equals(that.intersectionName);
+        return Objects.equals(intersectionName, that.intersectionName);
     }
 
     @Override
